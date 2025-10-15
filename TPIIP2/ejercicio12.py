@@ -1,3 +1,4 @@
+
 class Decano:
     def __init__(self, nombre, dni, email):
         self.nombre = nombre
@@ -29,6 +30,5 @@ universidad.agregarFacultad(facultad1)
 universidad.mostrarFcultad()
 universidad.agregarFacultad(facultad2)
 universidad.mostrarFcultad()
-
         
 
