@@ -1,34 +1,33 @@
-'''22. Una flota agrupa a múltiples vehículos. Los vehículos pueden ser camiones o furgonetas. Cada
-vehículo en la flota transporta un envío. Un envío puede estar compuesto por varios paquetes
-(uno o más productos) cuya vida depende totalmente de dicho envío. Si un paquete no se
-entrega, el paquete se “destruye” pero no así los productos.'''
+#22-Una flota agrupa a múltiples vehículos. Los vehículos pueden ser camiones o furgonetas. Cada vehículo en la flota transporta un envío. Un envío puede estar compuesto por varios paquetes (uno o más productos) cuya vida depende totalmente de dicho envío. Si un paquete no se entrega, el paquete se “destruye” pero no así los productos.
 
-class Producto:
-    def __init__(self, nombre, precio):
-        self.nom = nombre
-        self.precio = precio  
-    def __str__(self, nombre, precio):
-        return self.nom + self.precio
-class Paquete:
-    def __init__(self, productos):
-        self.productos = productos
-
-    def __str__(self):
-        return f"Paquete con productos: {[p.nombre for p in self.productos]}" 
-                
-class Vehiculo:
-    def __init__(self, patente, envio):
-        self.patente = patente
-        self.envio = envio
-    def __str__(self):
-        return    
-class Camiones(Vehiculo):   
-    def __init__(self, patente, modelo, marca, conductor):
-        super().__init__(patente, modelo, marca, conductor) 
-class Furgoneta(Vehiculo):
-    def __init__(self, patente, modelo, marca, conductor):
-        super().__init__(patente, modelo, marca, conductor)               
+from camion import Camion
+from envio import Envio
+from flota import Flota
+from vehiculo import Vehiculo
+from paquete import Paquete
+from producto import Producto
+from furgoneta import Furgoneta
 
 
-class Flota:
-    def __init__(self):
+
+
+
+
+p1 = Producto("Laptop")
+p2 = Producto("Telefono")
+p3 = Producto("Monitor")
+paquete1 = Paquete([p1, p2])
+paquete2 = Paquete([p3])
+envio1 = Envio([paquete1, paquete2])
+camion = Camion(envio1)
+flota = Flota()
+flota.agregar(camion)
+flota.mostrar()
+camion.fallar_entrega()
+print("\nNuevo envío:")
+p4 = Producto("Tablet")
+paquete3 = Paquete([p4])
+envio2 = Envio([paquete3])
+ligero = Furgoneta(envio2)
+flota.agregar(ligero)
+ligero.entregar()
